@@ -4,7 +4,7 @@ using namespace std;
 class AudioClip
 {
 private:
-  int channels,resolutin,sampleRate,duration;
+  int channels,resolutin,sampleRate;
 
 public:
   AudioClip()
@@ -45,25 +45,50 @@ public:
 
   bool StudioQuality()
   {
-    if(channels==2 && resolutin==24 && sr==88200)
+    if(channels==2 && resolutin==24 && sampleRate==88200)
     return true;
     else
     return false;
   }
 
-  int dataSize()
+  int dataSize(int duration)
   {
     int byttes;
-    byttes=duration*channels*(resolutin/8)*sampleRate;
+  return  byttes=duration*channels*(resolutin/8)*sampleRate;
   }
 
 };
 
 
 int main(int argc, char const *argv[]) {
-  int s;
-  AudioClip vol1(),vol2();
-  cout<<"Enter"
-  vol1.Setter_Channel()
+ AudioClip volumes[5];int val;
+for(int x=0;x<5;x++) {
+cout<<"\n Vol no ="<<x<<endl;
+cout<<"Enter channel \n";
+cin>>val;
+ volumes[x].Setter_Channel(val);
+
+cout<<"Enter Resolutin \n";
+cin>>val;
+ volumes[x].Setter_Resolution(val);
+
+cout<<"Enter Sample Rate \n";
+cin>>val;
+ volumes[x].Setter_SampleRatte(val);
+
+cout<<"\n Channel = "<<volumes[x].getter_Channel()<<endl;
+cout<<"\n Resolution = "<<volumes[x].getter_Resolution()<<endl;
+cout<<"\n Sample Rate = "<<volumes[x].getter_SampleRatte()<<endl;
+
+if(volumes[x].StudioQuality()==true)
+cout<<"Best Quality \n";
+else
+cout<<"Not Best \n";
+
+cout<<"Enter Duration \n";
+cin>>val;
+cout<<volumes[x].dataSize(val)<<" bytes \n";
+
+}
   return 0;
 }
